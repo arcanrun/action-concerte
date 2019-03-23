@@ -50,30 +50,42 @@ def get_tasks(request):
 def take_part_in(request):
 
     req = json.loads(str(request.body, encoding='utf-8'))
-    print('RECIVEWD', req)
+    # print('RECIVED', req)
     id_vk = req['id_vk']
     id_task = req['id_task']
 
-    try:
-        all_data = Users_vk.objects.all()
+    # try:
+    all_data = Users_vk.objects.all()
 
-        active_tasks = []
-        for field in all_data:
-            if instance(field.active_tasks, list):
-                for i in range(len(field.activeactive_tasks)):
-                    active_tasks.append(field.active_tasks[i])
-                active_tasks.append(id_task)
-            elif (id_task in active_tasks):
-                for i in range(len(field.activeactive_tasks)):
-                    active_tasks.append(field.active_tasks[i])
-            else:
-                active_tasks.append(id_task)
+    active_tasks = []
+    # for field in all_data:
 
-        for field in all_data:
-            if id_vk == field.id_vk:
-                userVk = Users_vk(id_vk=str(id_vk),
-                                  active_tasks=str(active_tasks))
-                userVk.save()
-        return JsonResponse({'RESPONSE': 'SUCCESS'})
-    except:
-        return JsonResponse({'RESPONSE': 'error while add task'})
+    #     if isinstance(encField, list) and not (id_task in encField):
+    #         print(encField)
+    #         print(isinstance(encField, list))
+    #         print((id_task in encField))
+
+    #         active_tasks.append(id_task)
+    #     elif isinstance(encField, list) and (id_task in encField):
+    #         pass
+    #     # else:
+    #     #     print('0----------', active_tasks)
+    #     #     active_tasks.append(id_task)
+    #     #     print('1----------', active_tasks)
+
+    for field in all_data:
+        encField = json.loads(field.active_tasks)
+        if str(field.id_vk) == str(id_vk):
+            if isinstance(encField, list) and not (id_task in encField):
+                encField.append(id_task)
+                Users_vk.objects.filter(id_vk=id_vk).update(
+                    active_tasks=json.dumps(encField))
+
+            elif not isinstance(encField, list):
+
+                Users_vk.objects.filter(id_vk=id_vk).update(
+                    active_tasks=json.dumps([id_task]))
+
+    return JsonResponse({'RESPONSE': 'SUCCESS'})
+    # except:
+    # return JsonResponse({'RESPONSE': 'error while add task'})

@@ -28,10 +28,10 @@ export class TaskProfile extends React.Component {
   }
   takePartInt = () => {
     const { id_vk } = this.props;
-    const { id } = this.state.dataForTask.dataForTask;
+    const { id_task } = this.state.dataForTask.dataForTask;
     const data = {
       id_vk,
-      id_task: id
+      id_task
     };
     fetch("http://127.0.0.1:8000/take-part-in/", {
       method: "POST",
