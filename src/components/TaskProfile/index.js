@@ -19,9 +19,42 @@ import Icon24Back from "@vkontakte/icons/dist/24/back";
 import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 const osname = platform();
 
-class TaskProfile extends React.Component {
+export class TaskProfile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataForTask: this.props || []
+    };
+  }
+  takePartInt = () => {
+    fetch("http://127.0.0.1:8000/take-part-in/", {
+      method: "POST",
+      body: JSON.stringify("{}")
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        this.setState({ tasks: res.RESPONSE });
+        return res;
+      })
+      .catch(res => console.log(Error(res)));
+  };
+
+  componentDidMount() {
+    console.log("FFFFF", this.state.dataForTask.dataForTask);
+  }
   render() {
-    const { goBack } = this.props;
+    const { goBack, id_vk } = this.props;
+    console.log(id_vk);
+    const {
+      type_task,
+      task_title,
+      task_time,
+      task_point,
+      gift_title,
+      list_id_users
+    } = this.state.dataForTask.dataForTask;
+
     return (
       <>
         <PanelHeader
@@ -31,11 +64,29 @@ class TaskProfile extends React.Component {
               {osname === IOS ? <Icon28ChevronBack /> : <Icon24Back />}
             </HeaderButton>
           }
-        />
-        <h1>TASK PROFILE</h1>
+        >
+          {parseInt(type_task) === 1 ? "Розыгрыш" : "Испытай удачу"}
+        </PanelHeader>
+        <div style={{ border: "1px solid #0000" }}>
+          <h3>{gift_title}</h3>
+          {/* <p>Необходиом выплонить:{Array.isArray(task_title)? <ul>{task_title.map((el,i)=>{<li>})}</ul> : {task_title}}</p> */}
+          <p>Необходиом выплонить:{task_title}</p>
+          <p>отсталос времени: {task_time}</p>
+          <p>вы заработает: {task_point}</p>
+        </div>
+        {list_id_users.includes("" + id_vk) ? (
+          <button style={{ fontSize: "20px" }} disabled>
+            Дождитесь завершения задания
+          </button>
+        ) : (
+          <button style={{ fontSize: "20px" }}>Принять участие</button>
+        )}
       </>
     );
   }
 }
-
-export { TaskProfile };
+// gift_title: "Поздравление с днем рождения со стендап сцены"
+// task_point: "90"
+// task_time: "56000"
+// task_title: "Два селфи с концерта"
+// type_task: "1"

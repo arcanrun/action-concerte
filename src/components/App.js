@@ -31,13 +31,22 @@ class App extends Component {
     super(props);
 
     this.state = {
+      id_vk: 65122543,
       activeStory: "events",
       activePanel: "events",
       dataFrom: 0,
-      concerts: []
+      concerts: [],
+      dataForTaks: []
     };
     this.onStoryChange = this.onStoryChange.bind(this);
   }
+
+  getDataForTask = data => {
+    this.setState({ dataForTaks: data }, () => {
+      // console.log("=====>DATATASK", this.state.dataForTaks);
+    });
+  };
+
   goBack = to => {
     this.setState({ activePanel: to });
   };
@@ -127,13 +136,18 @@ class App extends Component {
             </Panel>
             <Panel id="cocnertProfile">
               <ConcertProfile
+                getDataForTask={this.getDataForTask}
                 goto={this.goToSomeWhere}
                 dataFrom={this.state.dataFrom}
                 goBack={() => this.goBack("events")}
               />
             </Panel>
             <Panel id="taskProfile">
-              <TaskProfile goBack={() => this.goBack("cocnertProfile")} />
+              <TaskProfile
+                id_vk={this.state.id_vk}
+                dataForTask={this.state.dataForTaks}
+                goBack={() => this.goBack("cocnertProfile")}
+              />
             </Panel>
           </View>
           <View id="tasks" activePanel="tasks">

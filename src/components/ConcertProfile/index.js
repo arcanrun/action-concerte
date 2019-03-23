@@ -44,7 +44,7 @@ class ConcertProfile extends React.Component {
       .catch(res => console.log(Error(res)));
   }
   render() {
-    const { goBack } = this.props;
+    const { goBack, getDataForTask } = this.props;
     const tasks = this.state.tasks || [];
 
     const { dataFrom, goto } = this.props;
@@ -72,7 +72,14 @@ class ConcertProfile extends React.Component {
           {tasks.length === 0 ? (
             <div>Заданий пока нет</div>
           ) : (
-            tasks.map((el, i) => <TaskCard goto={goto} key={i} el={el} />)
+            tasks.map((el, i) => (
+              <TaskCard
+                getDataForTask={getDataForTask}
+                goto={goto}
+                key={i}
+                el={el}
+              />
+            ))
           )}
         </div>
       </>

@@ -39,7 +39,8 @@ def get_tasks(request):
             item['task_point'] = field.task_point
             item['task_time'] = field.task_time
             item['task_title'] = field.task_title
-
+            item['type_task'] = field.type_task
+            item['list_id_users'] = field.list_id_users
             arr_tasks.append(item)
         response['RESPONSE'] = arr_tasks
     print(response)
