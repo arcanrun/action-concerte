@@ -14,7 +14,7 @@ const initailState = {
   error_message: ""
 };
 
-export function conserts(state = initailState, action) {
+export function concerts(state = initailState, action) {
   switch (action.type) {
     case SHOW_MORE_REQUEST:
       return {

@@ -11,6 +11,8 @@ import {
 import "@vkontakte/vkui/dist/vkui.css";
 
 import { fetchConcerts } from "../actions/concertsActions";
+import { Spinner } from "../components/Spinner";
+import { CardEvent } from "./CardEvent";
 
 class App extends Component {
   constructor(props) {
@@ -27,11 +29,28 @@ class App extends Component {
     this.props.fetchConcerts();
   }
 
+  // componentDidUpdate(prevProps) {
+  //   if (this.props !== prevProps) {
+  //     this.props.fetchConcerts();
+  //   }
+  // }
+
   onStoryChange(e) {
     this.setState({ activeStory: e.currentTarget.dataset.story });
   }
   render() {
-    return (
+    const concerts = this.props.concerts || [];
+
+    console.log("----!!!", concerts);
+    return this.state.isFetching ? (
+      <div
+        style={{
+          textAlign: "center"
+        }}
+      >
+        <Spinner />
+      </div>
+    ) : (
       <div className="App">
         <Epic
           activeStory={this.state.activeStory}
@@ -67,8 +86,15 @@ class App extends Component {
           <View id="events" activePanel="events">
             <Panel id="events">
               <PanelHeader>Мероприятия</PanelHeader>
-              concerts:
-              {this.props.concerts}
+
+              {concerts.map(el => (
+                <CardEvent
+                  key={el.id}
+                  title={el.title}
+                  img={el.subevents[0].image}
+                  date={el.subevents[0].date}
+                />
+              ))}
             </Panel>
           </View>
           <View id="tasks" activePanel="tasks">
@@ -94,7 +120,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  concerts: state.concerts
+  concerts: state.concerts.concerts,
+  isFetching: state.concerts.isFetching
 });
 
 export default connect(

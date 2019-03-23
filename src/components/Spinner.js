@@ -9,4 +9,4 @@ const Spinner = () => (
   </div>
 );
 
-export default Spinner;
+export { Spinner };
