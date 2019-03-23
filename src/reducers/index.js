@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import { photos } from "./unsplashReducer";
+import { conserts } from "./concertReducer";
 import { menu } from "./menuReducer";
 import { user } from "./userReducer";
 
 export const rootReducer = combineReducers({
-  photos,
+  conserts,
   menu,
   user
 });

@@ -1,3 +1,4 @@
-import { App } from "./App";
+import App from "./App";
+import { BottomBar } from "./BottomBar";
 
-export { App };
+export { App, BottomBar };

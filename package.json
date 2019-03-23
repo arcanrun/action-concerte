@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://arcanrun.github.io/redux-picSaver",
   "dependencies": {
+    "@vkontakte/icons": "^1.4.3",
+    "@vkontakte/vkui": "^2.19.0",
     "@vkontakte/vkui-connect": "^1.1.3",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",

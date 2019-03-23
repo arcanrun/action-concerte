@@ -1,51 +1,48 @@
 import {
-  GET_PHOTOS_REQUEST,
-  GET_PHOTOS_SUCCESS,
-  GET_PHOTOS_FAILURE,
+  GET_CONCERTS_REQUEST,
+  GET_CONCERTS_SUCCESS,
+  GET_CONCERTS_FAILURE,
   SHOW_MORE_REQUEST,
   SHOW_MORE_SUCCESS
-} from "../constants/requestsUnsplashActions";
+} from "../constants/requestsConcertsActions";
 
 const initailState = {
   isFetching: false,
   isFetchingForMore: false,
-  photos: [],
+  concerts: [],
   error: false,
-  error_message: "",
-  searchFor: ""
+  error_message: ""
 };
 
-export function photos(state = initailState, action) {
+export function conserts(state = initailState, action) {
   switch (action.type) {
     case SHOW_MORE_REQUEST:
       return {
         ...state,
-        isFetchingForMore: action.payload.isFetching,
-        searchFor: action.payload.searchFor
+        isFetchingForMore: action.payload.isFetching
       };
 
     case SHOW_MORE_SUCCESS:
       return {
         ...state,
         isFetchingForMore: false,
-        photos: [...state.photos, ...action.payload.photos],
+        concerts: [...state.concerts, ...action.payload.concerts],
         page: ++state.page
       };
 
-    case GET_PHOTOS_REQUEST:
+    case GET_CONCERTS_REQUEST:
       return {
         ...state,
-        isFetching: action.payload.isFetching,
-        searchFor: action.payload.searchFor
+        isFetching: action.payload.isFetching
       };
 
-    case GET_PHOTOS_SUCCESS:
+    case GET_CONCERTS_SUCCESS:
       return {
         ...state,
         isFetching: action.payload.isFetching,
-        photos: action.payload.photos
+        concerts: action.payload.concerts
       };
-    case GET_PHOTOS_FAILURE:
+    case GET_CONCERTS_FAILURE:
       return {
         ...state,
         isFetching: action.payload.isFetching,

@@ -19,10 +19,14 @@
   height: 20px;
   display: inline-block;
 }
-.close {
-  background: url(./close.svg);
+
+.fire {
+  background-image: url(./fire.svg);
   background-size: 20px 20px;
   width: 20px;
   height: 20px;
   display: inline-block;
+}
+.fire-action {
+  background-image: url(./fire-active.svg);
 }
