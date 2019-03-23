@@ -21,8 +21,8 @@ import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
 import { fetchConcerts } from "../actions/concertsActions";
 import { Spinner } from "../components/Spinner";
 import { CardEvent } from "./CardEvent";
-import ConcertPagePanel from "./ConcertPagePanel";
 import { TaskProfile } from "../components/TaskProfile";
+import { ConcertProfile } from "../components/ConcertProfile";
 
 const osname = platform();
 
@@ -126,25 +126,10 @@ class App extends Component {
               ))}
             </Panel>
             <Panel id="cocnertProfile">
-              <PanelHeader
-                addon={
-                  <HeaderButton
-                    onClick={() => this.setState({ activePanel: "events" })}
-                  >
-                    Назад
-                  </HeaderButton>
-                }
-                left={
-                  <HeaderButton
-                    onClick={() => this.setState({ activePanel: "events" })}
-                  >
-                    {osname === IOS ? <Icon28ChevronBack /> : <Icon24Back />}
-                  </HeaderButton>
-                }
-              />
-              <ConcertPagePanel
+              <ConcertProfile
                 goto={this.goToSomeWhere}
                 dataFrom={this.state.dataFrom}
+                goBack={() => this.goBack("events")}
               />
             </Panel>
             <Panel id="taskProfile">

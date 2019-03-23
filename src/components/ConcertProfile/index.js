@@ -1,11 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { taskAction } from "../actions";
-
+import {
+  View,
+  Panel,
+  PanelHeader,
+  Epic,
+  TabbarItem,
+  HeaderButton,
+  Tabbar,
+  platform,
+  IOS,
+  Group,
+  List,
+  Cell
+} from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
+import Icon24Back from "@vkontakte/icons/dist/24/back";
+import Icon28ChevronBack from "@vkontakte/icons/dist/28/chevron_back";
+import { TaskCard } from "../TaskCard";
+const osname = platform();
 
-import { TaskCard } from "../components/TaskCard";
-class ConcertPagePanel extends React.Component {
+class ConcertProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,12 +44,20 @@ class ConcertPagePanel extends React.Component {
       .catch(res => console.log(Error(res)));
   }
   render() {
+    const { goBack } = this.props;
     const tasks = this.state.tasks || [];
 
     const { dataFrom, goto } = this.props;
-
     return (
       <>
+        <PanelHeader
+          addon={<HeaderButton onClick={goBack}>Назад</HeaderButton>}
+          left={
+            <HeaderButton onClick={goBack}>
+              {osname === IOS ? <Icon28ChevronBack /> : <Icon24Back />}
+            </HeaderButton>
+          }
+        />
         <div style={{ background: "aqua" }}>
           <div>{dataFrom.title}</div>
           <div>{dataFrom.subevents[0].date}</div>
@@ -57,7 +80,4 @@ class ConcertPagePanel extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  {}
-)(ConcertPagePanel);
+export { ConcertProfile };
