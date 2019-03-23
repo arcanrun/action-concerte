@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { Panel, PanelHeader } from "@vkontakte/vkui";
+import "@vkontakte/vkui/dist/vkui.css";
 import "./style.css";
 
-const CardEvent = ({ bgimg, title, img, date }) => {
+const CardEvent = ({ bgimg, title, img, date, onClick, id }) => {
   const image = img || 1;
   const bgurl =
     image === 1
@@ -10,6 +12,8 @@ const CardEvent = ({ bgimg, title, img, date }) => {
 
   return (
     <div
+      id={id}
+      onClick={onClick}
       className="card-event"
       style={{
         backgroundImage: "url(" + bgurl + ")",

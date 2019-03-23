@@ -38,6 +38,7 @@ class App extends Component {
     };
     this.onStoryChange = this.onStoryChange.bind(this);
   }
+
   goBack = to => {
     this.setState({ activePanel: to });
   };
@@ -45,6 +46,7 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchConcerts();
   }
+
   goToSomeWhere = e => {
     // console.log("GOTOTOOT", e.currentTarget.dataset.goto);
     const dataset = e.currentTarget.dataset.goto;
@@ -147,9 +149,8 @@ class App extends Component {
                 dataFrom={this.state.dataFrom}
               />
             </Panel>
-            <Panel id="taskProfile">
-              <TaskProfile goBack={() => this.goBack("cocnertProfile")} />
-            </Panel>
+            <Panel id="taskProfile" />
+            <TaskProfile goBack={this.goBack("cocnertProfile")} />
           </View>
           <View id="tasks" activePanel="tasks">
             <Panel id="tasks">
