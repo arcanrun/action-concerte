@@ -27,14 +27,19 @@ export class TaskProfile extends React.Component {
     };
   }
   takePartInt = () => {
+    const { id_vk } = this.props;
+    const { id } = this.state.dataForTask.dataForTask;
+    const data = {
+      id_vk,
+      id_task: id
+    };
     fetch("http://127.0.0.1:8000/take-part-in/", {
       method: "POST",
-      body: JSON.stringify("{}")
+      body: JSON.stringify(data)
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res);
-        this.setState({ tasks: res.RESPONSE });
+        console.log("RECIVED:", res);
         return res;
       })
       .catch(res => console.log(Error(res)));
@@ -79,7 +84,9 @@ export class TaskProfile extends React.Component {
             Дождитесь завершения задания
           </button>
         ) : (
-          <button style={{ fontSize: "20px" }}>Принять участие</button>
+          <button onClick={this.takePartInt} style={{ fontSize: "20px" }}>
+            Принять участие
+          </button>
         )}
       </>
     );

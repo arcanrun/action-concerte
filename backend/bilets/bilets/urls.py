@@ -22,4 +22,7 @@ from articles import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('get-tasks/', views.get_tasks),
+    path('take-part-in/', views.take_part_in),
+
+
 ]
