@@ -25,6 +25,7 @@ import { TaskProfile } from "../components/TaskProfile";
 import { ConcertProfile } from "../components/ConcertProfile";
 import { Profile } from "../components/Profile";
 import { TopUser } from "../components/ TopUsers";
+import { Admin } from "../components/Admin";
 
 const osname = platform();
 
@@ -135,6 +136,14 @@ class App extends Component {
               >
                 A
               </TabbarItem>
+              <TabbarItem
+                onClick={this.onStoryChange}
+                selected={this.state.activeStory === "admin"}
+                data-story="admin"
+                text="Admin"
+              >
+                A
+              </TabbarItem>
             </Tabbar>
           }
         >
@@ -200,6 +209,12 @@ class App extends Component {
             <Panel id="top">
               <PanelHeader>Топ</PanelHeader>
               <TopUser />
+            </Panel>
+          </View>
+          <View id="admin" activePanel="admin">
+            <Panel id="admin">
+              <PanelHeader>Admin</PanelHeader>
+              <Admin />
             </Panel>
           </View>
         </Epic>

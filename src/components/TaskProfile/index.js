@@ -4,6 +4,7 @@ import {
   View,
   Panel,
   PanelHeader,
+  Button,
   Epic,
   TabbarItem,
   HeaderButton,
@@ -59,9 +60,10 @@ export class TaskProfile extends React.Component {
       task_time,
       task_point,
       gift_title,
-      list_id_users
+      list_id_users,
+      gift_main
     } = this.state.dataForTask.dataForTask;
-
+    console.log("wdwdwdw", gift_main);
     return (
       <>
         <PanelHeader
@@ -82,19 +84,30 @@ export class TaskProfile extends React.Component {
           <p>вы заработает: {task_point}</p>
         </div>
         {list_id_users.includes("" + id_vk) ? (
-          <button style={{ fontSize: "20px" }} disabled>
-            Дождитесь завершения задания
-          </button>
+          <div>
+            <button style={{ fontSize: "20px" }} disabled>
+              Дождитесь завершения задания
+            </button>
+
+            <a herf={gift_main}>Подписаться на страницу</a>
+          </div>
         ) : (
-          <button
-            onClick={this.takePartInt}
-            style={{ fontSize: "20px" }}
-            disabled={this.state.disabler}
-          >
-            {this.state.disabler
-              ? "Дождитесь завершения задания"
-              : " Принять участие"}
-          </button>
+          <div>
+            <button
+              onClick={this.takePartInt}
+              style={{ fontSize: "20px" }}
+              disabled={this.state.disabler}
+            >
+              {this.state.disabler
+                ? "Дождитесь завершения задания"
+                : " Принять участие"}
+            </button>
+            {this.state.disabler ? (
+              <a herf={gift_main}>Подписаться на страницу</a>
+            ) : (
+              ""
+            )}
+          </div>
         )}
       </>
     );

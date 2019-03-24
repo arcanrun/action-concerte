@@ -41,6 +41,7 @@ def get_tasks(request):
             item['task_title'] = field.task_title
             item['type_task'] = field.type_task
             item['list_id_users'] = field.list_id_users
+            item['gift_main'] = json.dumps(field.gift_main)
 
             arr_tasks.append(item)
         response['RESPONSE'] = arr_tasks
@@ -214,4 +215,20 @@ def get_all_users(request):
         item['concerts'] = field.concerts
         response_arr.append(item)
     response['RESPONSE'] = response_arr
+    return JsonResponse(response)
+
+
+def add_task(request):
+    req = json.loads(str(request.body, encoding='utf-8'))
+    response = {'RESPONSE': []}
+
+    descr = req['descr']
+    points = req['points']
+    id_concert = req['concerts']
+    title_git = req['titleGit']
+    print('RECIVED', descr, points, id_concert)
+    user = Tasks(id_concert=id_concert,
+                 task_point=points, task_title=descr, gift_title=title_git)
+    user.save()
+    response['RESPONSE'] = 'SUCCESS'
     return JsonResponse(response)
