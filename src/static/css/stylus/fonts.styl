@@ -1,0 +1,16 @@
+include-font(n, w = normal, s = normal)
+    @font-face
+        font-weight: w
+        font-style: s
+        font-family: n
+        src: url("../fonts/" + n + ".ttf") format("truetype")
+
+include-font("Lobster", 400)
+include-font("FuturaBookC")
+include-font("FuturaBookC", normal, italic)
+include-font("FuturaDemiC")
+include-font("FuturaDemiC", normal, italic)
+include-font("FuturaLightC", 300, italic)
+include-font("FuturaMediumC", 500)
+include-font("FuturaLightC", 300, normal)
+include-font("FuturaMediumC", 500, italic)

@@ -2,7 +2,7 @@
   "name": "redux-picsaver",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://arcanrun.github.io/action-concerte/",
+  "homepage": "https://arcanrun.github.io/redux-picSaver",
   "dependencies": {
     "@vkontakte/icons": "^1.4.3",
     "@vkontakte/vkui": "^2.19.0",

@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../static/spinner_2.css";
+import "../static/css/spinner_2.css";
 
 const Spinner2 = () => (
   <div className="spinner2">

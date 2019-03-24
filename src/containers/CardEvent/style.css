@@ -1,0 +1,80 @@
+.event_card {
+  position: relative;
+  margin-bottom: 10px;
+  height: 230px;
+  vertical-align: top;
+}
+.event_card .event_card__image_wrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+}
+.event_card .event_card__image_wrap .event_card__image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-position: 50%;
+  background-size: cover;
+}
+.event_card .event_card__fade {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-color: rgba(0,0,0,0.4);
+}
+.event_card .event_card__info {
+  position: absolute;
+  display: flex;
+  display: -ms-flexbox;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 15px;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-family: 'FuturaMediumC';
+}
+.event_card .event_card__info .event_card__title {
+  overflow: hidden;
+  box-sizing: border-box;
+  max-width: 100%;
+  max-height: 70px;
+  text-shadow: 0 4px 21px rgba(0,0,0,0.5);
+  word-wrap: break-word;
+  word-break: break-word;
+  letter-spacing: 0.012em;
+  font-size: 30px;
+  line-height: normal;
+}
+.event_card .event_card__info .event_card__info_item_wrap {
+  position: relative;
+  overflow: hidden;
+  margin-top: 10px;
+  padding-top: 5px;
+  padding-left: 30px;
+  min-height: 24px;
+  text-overflow: ellipsis;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  white-space: nowrap;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  color: rgba(255,255,255,0.8);
+}
+.event_card .event_card__info .event_card__info_item_wrap .Icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.event_card .event_card__favorite {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  color: #fff;
+}
