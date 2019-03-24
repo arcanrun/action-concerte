@@ -43,7 +43,7 @@ class App extends Component {
 
   getDataForTask = data => {
     this.setState({ dataForTaks: data }, () => {
-      // console.log("=====>DATATASK", this.state.dataForTaks);
+      console.log("=====>DATATASK", this.state.dataForTaks);
     });
   };
 

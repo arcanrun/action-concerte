@@ -23,7 +23,8 @@ export class TaskProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataForTask: this.props || []
+      dataForTask: this.props || [],
+      disabler: false
     };
   }
   takePartInt = () => {
@@ -40,6 +41,7 @@ export class TaskProfile extends React.Component {
       .then(res => res.json())
       .then(res => {
         console.log("RECIVED:", res);
+        this.setState({ disabler: !this.disabler });
         return res;
       })
       .catch(res => console.log(Error(res)));
@@ -84,8 +86,14 @@ export class TaskProfile extends React.Component {
             Дождитесь завершения задания
           </button>
         ) : (
-          <button onClick={this.takePartInt} style={{ fontSize: "20px" }}>
-            Принять участие
+          <button
+            onClick={this.takePartInt}
+            style={{ fontSize: "20px" }}
+            disabled={this.state.disabler}
+          >
+            {this.state.disabler
+              ? "Дождитесь завершения задания"
+              : " Принять участие"}
           </button>
         )}
       </>
