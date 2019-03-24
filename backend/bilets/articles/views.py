@@ -188,3 +188,30 @@ def get_your_tasks(request):
 
     response['RESPONSE'] = response_arr
     return JsonResponse(response)
+
+# id_vk = models.TextField()
+#     Firstname = models.TextField()
+#     Lastname = models.TextField()
+#     points = models.TextField()
+#     active_tasks = models.TextField()
+#     failed_tasks = models.TextField()
+#     wasted = models.TextField()
+#     concerts = models.TextField()
+
+
+def get_all_users(request):
+    all_data = Users_vk.objects.all()
+    response = {'RESPONSE': []}
+    response_arr = []
+    for field in all_data:
+        item = {}
+        item['id_vk'] = field.id_vk
+        item['Firstname'] = field.Firstname
+        item['points'] = field.points
+        item['active_tasks'] = field.active_tasks
+        item['failed_tasks'] = field.failed_tasks
+        item['wasted'] = field.wasted
+        item['concerts'] = field.concerts
+        response_arr.append(item)
+    response['RESPONSE'] = response_arr
+    return JsonResponse(response)
