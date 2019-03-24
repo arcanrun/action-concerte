@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/redux-picSaver/precache-manifest.7ac03e59fd9082fe19f877296b31773b.js"
+  "/action-concerte/precache-manifest.6a609f73b0fa89e05024afe6c3c1dc8e.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/redux-picSaver/index.html", {
+workbox.routing.registerNavigationRoute("/action-concerte/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
