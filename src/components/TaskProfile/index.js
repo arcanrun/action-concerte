@@ -52,7 +52,7 @@ export class TaskProfile extends React.Component {
   }
   render() {
     const { goBack, id_vk } = this.props;
-    console.log(id_vk);
+    console.log("<TaskProfie>", this.state);
     const {
       type_task,
       task_title,

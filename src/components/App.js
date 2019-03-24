@@ -128,9 +128,9 @@ class App extends Component {
               </TabbarItem>
               <TabbarItem
                 onClick={this.onStoryChange}
-                selected={this.state.activeStory === "archive"}
-                data-story="archive"
-                text="Архив"
+                selected={this.state.activeStory === "top"}
+                data-story="top"
+                text="Топ"
               >
                 A
               </TabbarItem>
@@ -166,6 +166,9 @@ class App extends Component {
             <Panel id="taskProfile">
               <TaskProfile
                 id_vk={this.state.id_vk}
+                dataForTask={this.state.dataForTaks}
+                getDataForTask={this.getDataForTask}
+                dataFrom={this.state.dataFrom}
                 goBack={() => this.goBack("cocnertProfile")}
               />
             </Panel>
@@ -174,26 +177,27 @@ class App extends Component {
             <Panel id="profile">
               <PanelHeader>Личный кабинет</PanelHeader>
               <Profile
-                dataForTask={this.state.dataForTaks}
-                dataFrom={this.state.dataFrom}
-                getDataForTask={this.getDataForTask}
                 goto={this.goToSomeWhere}
+                getDataForTask={this.getDataForTask}
                 goBack={() => this.goBack("cocnertProfile")}
                 userFromApi={this.state.userFromApi}
                 getUserFromApi={this.getUserFromApi}
                 id_vk={this.state.id_vk}
               />
             </Panel>
-          </View>
-          <View id="archive" activePanel="archive">
-            <Panel id="archive">
-              <PanelHeader>Архив</PanelHeader>
+            <Panel id="taskProfile">
+              <TaskProfile
+                id_vk={this.state.id_vk}
+                dataForTask={this.state.dataForTaks}
+                getDataForTask={this.getDataForTask}
+                dataFrom={this.state.dataFrom}
+                goBack={() => this.goBack("cocnertProfile")}
+              />
             </Panel>
           </View>
-
-          <View id="notifications" activePanel="notifications">
-            <Panel id="notifications">
-              <PanelHeader>Notifications</PanelHeader>
+          <View id="top" activePanel="top">
+            <Panel id="top">
+              <PanelHeader>Топ</PanelHeader>
             </Panel>
           </View>
         </Epic>

@@ -150,7 +150,8 @@ def get_your_tasks(request):
                 item['gift_title'] = field.gift_title
                 item['task_point'] = field.task_point
                 item['status'] = 'in_progress'
-                item['task_time'] = 'task_time'
+                item['task_time'] = field.task_time
+                item['type_task'] = field.type_task
                 response_arr.append(item)
             elif str(field.id) == str(i) and str(id_vk) in str(json.loads(field.winner)):
 

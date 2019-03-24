@@ -46,7 +46,6 @@ export class Profile extends React.Component {
   }
   render() {
     const { tasks } = this.state;
-    console.log("12312312", this.props);
     return (
       <div>
         {!this.props.userFromApi ? (
