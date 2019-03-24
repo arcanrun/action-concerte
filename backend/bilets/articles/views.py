@@ -73,6 +73,22 @@ def take_part_in(request):
     #     #     active_tasks.append(id_task)
     #     #     print('1----------', active_tasks)
 
+    all_tasks = Tasks.objects.all()
+    list_id_users = []
+
+    for field in all_tasks:
+        encField = json.loads(field.list_id_users)
+        if str(field.id) == str(id_task):
+            if isinstance(encField, list) and not (id_vk in encField):
+                encField.append(id_vk)
+                print(encField)
+                Tasks.objects.filter(id=id_task).update(
+                    list_id_users=json.dumps(encField))
+            elif not isinstance(encField, list):
+                Tasks.objects.filter(id=id_task).update(
+                    list_id_users=json.dumps([id_vk]))
+
+    print(',,,,,,', list_id_users)
     for field in all_data:
         encField = json.loads(field.active_tasks)
         if str(field.id_vk) == str(id_vk):
@@ -80,6 +96,8 @@ def take_part_in(request):
                 encField.append(id_task)
                 Users_vk.objects.filter(id_vk=id_vk).update(
                     active_tasks=json.dumps(encField))
+                # list_id_user = json.loads(Tasks.objects.filter(fieldname="list_id_user").va)
+                # Tasks.objects.filter(id=id_task).update(list_id_user)
 
             elif not isinstance(encField, list):
 
