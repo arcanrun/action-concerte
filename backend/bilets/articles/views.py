@@ -107,3 +107,62 @@ def take_part_in(request):
     return JsonResponse({'RESPONSE': 'SUCCESS'})
     # except:
     # return JsonResponse({'RESPONSE': 'error while add task'})
+
+
+def get_user(request):
+    req = json.loads(str(request.body, encoding='utf-8'))
+
+    id_vk = str(req['id_vk'])
+    response = {'RESPONSE': []}
+
+    all_data = Users_vk.objects.all()
+
+    for field in all_data:
+        item = {}
+        if str(field.id_vk) == str(id_vk):
+
+            item['id_vk'] = field.id_vk
+            item['Firstname'] = field.Firstname
+            item['Lastname'] = field.Lastname
+            item['points'] = field.points
+            item['active_tasks'] = field.active_tasks
+            item['failed_tasks'] = field.failed_tasks
+            item['wasted'] = field.wasted
+            item['concerts'] = field.concerts
+            break
+    response['RESPONSE'] = item
+    return JsonResponse(response)
+
+
+def get_your_tasks(request):
+    req = json.loads(str(request.body, encoding='utf-8'))
+    print('-0-----', req)
+    searching_arr = str(req['search_for'])
+    id_vk = str(req['id_vk'])
+    response = {'RESPONSE': []}
+    response_arr = []
+    all_data = Tasks.objects.all()
+    for i in searching_arr:
+        for field in all_data:
+            item = {}
+            if str(field.id) == str(i) and str(id_vk) in str(json.loads(field.list_id_users)):
+
+                item['gift_title'] = field.gift_title
+                item['task_point'] = field.task_point
+                item['status'] = 'in_progress'
+                item['task_time'] = 'task_time'
+                response_arr.append(item)
+            elif str(field.id) == str(i) and str(id_vk) in str(json.loads(field.winner)):
+
+                item['gift_title'] = field.gift_title
+                item['task_point'] = field.Firstname
+                item['task_time'] = 'task_time'
+                response_arr.append(item)
+            # elif str(field.id) == str(i) and str(id_vk) in str(encField=json.loads(field.winner)):
+
+            #     item['gift_title'] = field.gift_title
+            #     item['task_point'] = field.Firstname
+            #     item['status'] = 'success'
+
+    response['RESPONSE'] = response_arr
+    return JsonResponse(response)

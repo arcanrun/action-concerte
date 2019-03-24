@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('get-tasks/', views.get_tasks),
     path('take-part-in/', views.take_part_in),
+    path('get-user/', views.get_user),
+    path('get-your-tasks/', views.get_your_tasks),
 
 
 ]

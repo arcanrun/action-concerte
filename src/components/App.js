@@ -23,6 +23,7 @@ import { Spinner } from "../components/Spinner";
 import { CardEvent } from "./CardEvent";
 import { TaskProfile } from "../components/TaskProfile";
 import { ConcertProfile } from "../components/ConcertProfile";
+import { Profile } from "../components/Profile";
 
 const osname = platform();
 
@@ -32,6 +33,7 @@ class App extends Component {
 
     this.state = {
       id_vk: 65122543,
+      userFromApi: null,
       activeStory: "events",
       activePanel: "events",
       dataFrom: 0,
@@ -40,6 +42,24 @@ class App extends Component {
     };
     this.onStoryChange = this.onStoryChange.bind(this);
   }
+
+  getUserFromApi = data => {
+    fetch("http://127.0.0.1:8000/get-user/", {
+      method: "POST",
+      body: JSON.stringify({ id_vk: data })
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log("(((9", res.RESPONSE);
+
+        this.setState(
+          { userFromApi: res.RESPONSE },
+          console.log("now in state App", this.state.userFromApi)
+        );
+        return res;
+      })
+      .catch(res => console.log(Error(res)));
+  };
 
   getDataForTask = data => {
     this.setState({ dataForTaks: data }, () => {
@@ -53,6 +73,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.fetchConcerts();
+    this.getUserFromApi(this.state.id_vk);
   }
   goToSomeWhere = e => {
     // console.log("GOTOTOOT", e.currentTarget.dataset.goto);
@@ -99,9 +120,9 @@ class App extends Component {
               </TabbarItem>
               <TabbarItem
                 onClick={this.onStoryChange}
-                selected={this.state.activeStory === "tasks"}
-                data-story="tasks"
-                text="Задания"
+                selected={this.state.activeStory === "profile"}
+                data-story="profile"
+                text="Профиль"
               >
                 A
               </TabbarItem>
@@ -145,14 +166,23 @@ class App extends Component {
             <Panel id="taskProfile">
               <TaskProfile
                 id_vk={this.state.id_vk}
-                dataForTask={this.state.dataForTaks}
                 goBack={() => this.goBack("cocnertProfile")}
               />
             </Panel>
           </View>
-          <View id="tasks" activePanel="tasks">
-            <Panel id="tasks">
-              <PanelHeader>Задания</PanelHeader>
+          <View id="profile" activePanel="profile">
+            <Panel id="profile">
+              <PanelHeader>Личный кабинет</PanelHeader>
+              <Profile
+                dataForTask={this.state.dataForTaks}
+                dataFrom={this.state.dataFrom}
+                getDataForTask={this.getDataForTask}
+                goto={this.goToSomeWhere}
+                goBack={() => this.goBack("cocnertProfile")}
+                userFromApi={this.state.userFromApi}
+                getUserFromApi={this.getUserFromApi}
+                id_vk={this.state.id_vk}
+              />
             </Panel>
           </View>
           <View id="archive" activePanel="archive">
