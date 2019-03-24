@@ -47,6 +47,27 @@ def get_tasks(request):
     return JsonResponse(response)
 
 
+def get_one_task(request):
+    req = json.loads(str(request.body, encoding='utf-8'))
+    id_task = str(req['id_task'])
+    response = {'RESPONSE': []}
+    all_data = Tasks.objects.all()
+    for field in all_data:
+        item = {}
+        if str(field.id) == str(id_task):
+            item['id_task'] = field.id
+            item['gift_title'] = field.gift_title
+            item['task_point'] = field.task_point
+            item['task_time'] = field.task_time
+            item['task_title'] = field.task_title
+            item['type_task'] = field.type_task
+            item['list_id_users'] = field.list_id_users
+            break
+        response['RESPONSE'] = item
+
+    return JsonResponse(response)
+
+
 def take_part_in(request):
 
     req = json.loads(str(request.body, encoding='utf-8'))

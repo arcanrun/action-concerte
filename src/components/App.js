@@ -24,6 +24,7 @@ import { CardEvent } from "./CardEvent";
 import { TaskProfile } from "../components/TaskProfile";
 import { ConcertProfile } from "../components/ConcertProfile";
 import { Profile } from "../components/Profile";
+import { TopUser } from "../components/ TopUsers";
 
 const osname = platform();
 
@@ -198,6 +199,7 @@ class App extends Component {
           <View id="top" activePanel="top">
             <Panel id="top">
               <PanelHeader>Топ</PanelHeader>
+              <TopUser />
             </Panel>
           </View>
         </Epic>

@@ -25,6 +25,7 @@ urlpatterns = [
     path('take-part-in/', views.take_part_in),
     path('get-user/', views.get_user),
     path('get-your-tasks/', views.get_your_tasks),
+    path('get-one-task/', views.get_one_task),
 
 
 ]
