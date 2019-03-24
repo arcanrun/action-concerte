@@ -232,3 +232,10 @@ def add_task(request):
     user.save()
     response['RESPONSE'] = 'SUCCESS'
     return JsonResponse(response)
+
+
+def ard(request):
+    user = Users_vk.objects.get(id_vk="12122663")
+    user.points = str(int(user.points)+30)
+    user.save()
+    return HttpResponse('User joined the group. Points were transfered!')

@@ -123,3 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '192.168.43.49'
+]
